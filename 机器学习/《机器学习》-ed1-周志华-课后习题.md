@@ -102,3 +102,37 @@ if __name__ == "__main__":
 
 4、使用基尼指数实现决策树
 
+## ch10-降维与聚类
+
+1、k近邻算法实现
+
+```python
+import numpy as np
+from collections import Counter
+class KNN:
+    def__init__(self, k):
+        self.k = k
+        
+    def fit(self, X, y):
+        self.x_train = X
+        self.y_train = y
+        
+    def predict(self, X):
+        predictions = []
+        for smaple in X:
+            distance = [np.linalg.norm(sample - x) for x in self.x_train]
+            nearest_indices = np.argsort(distances)[:self.k]
+            nearest_labels =[self.y_train[i] for i n nearest_indices]
+            most_common_label = Counter(nearest_labels).most_common(1)[0][0]
+X_train = np.array([[1, 2], [2, 3], [3, 4], [5, 6]])
+y_train = np.array(['A', 'A', 'B', 'B'])
+X_test = np.array([[4, 5], [1, 1,]])
+
+knn = KNN(2)
+knn.fit(X_train, y_train)
+predictions knn.predict(X_test)
+print("predictions:", predictions)
+            
+        
+```
+
